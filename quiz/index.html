@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Word Quiz Master</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&family=Noto+Sans+JP:wght@400;700&display=swap"
+        rel="stylesheet">
+</head>
+
+<body>
+    <div id="game-container">
+        <header>
+            <div id="header-top" class="hidden">
+                <span id="player-name-display">Player</span>
+                <button id="exit-btn" onclick="exitGame()">✕</button>
+            </div>
+            <h1>Word Quiz Master</h1>
+            <div id="progress-bar-container" class="hidden">
+                <div id="progress-bar"></div>
+            </div>
+        </header>
+
+        <!-- Login Screen -->
+        <main id="login-screen">
+            <p class="subtitle">Welcome! Enter your name.</p>
+            <input type="text" id="nickname-input" placeholder="Nickname" maxlength="10">
+            <button id="login-btn" onclick="registerUser()">Start Game</button>
+        </main>
+
+        <!-- Start Screen -->
+        <main id="start-screen" class="hidden">
+            <p class="subtitle">Select Difficulty</p>
+            <div class="difficulty-options">
+                <button class="diff-btn easy" onclick="startGame('easy')">
+                    Easy
+                </button>
+                <button class="diff-btn normal" onclick="startGame('normal')">
+                    Normal
+                </button>
+                <button class="diff-btn hard" onclick="startGame('hard')">
+                    Hard
+                </button>
+            </div>
+            <div class="menu-buttons">
+                <button id="history-btn" class="secondary-btn" onclick="toggleHistory()">
+                    View History
+                </button>
+                <button id="vocab-btn" class="secondary-btn" onclick="toggleWordList()">
+                    My Words 📚
+                </button>
+            </div>
+        </main>
+
+        <!-- History Screen -->
+        <main id="history-screen" class="hidden">
+            <h2>Game History</h2>
+            <div id="history-list">
+                <!-- History items injected here -->
+                <p class="no-history">No games played yet.</p>
+            </div>
+            <button class="secondary-btn" onclick="toggleHistory()">Back to Menu</button>
+        </main>
+
+        <!-- Word List Screen -->
+        <main id="word-list-screen" class="hidden">
+            <h2>My Vocabulary</h2>
+            <div id="word-stats-summary">
+                <div class="stat-box mastered">
+                    <span class="stat-num" id="stat-mastered">0</span>
+                    <span class="stat-label">Mastered</span>
+                </div>
+                <div class="stat-box review">
+                    <span class="stat-num" id="stat-review">0</span>
+                    <span class="stat-label">Review</span>
+                </div>
+            </div>
+            <div id="vocab-list">
+                <!-- Word items injected here -->
+            </div>
+            <button class="secondary-btn" onclick="toggleWordList()">Back to Menu</button>
+        </main>
+
+        <!-- Quiz Area -->
+        <main id="quiz-area" class="hidden">
+            <div id="question-container">
+                <p id="question-text">Loading...</p>
+            </div>
+            <div id="options-container" class="grid-options">
+                <!-- Options will be injected here by JS -->
+            </div>
+
+            <!-- Immediate Feedback Overlay -->
+            <div id="feedback-overlay" class="hidden">
+                <div class="feedback-content">
+                    <h2 id="feedback-title">Correct!</h2>
+                    <p id="feedback-detail">Meaning: ...</p>
+                    <button id="next-btn" onclick="nextQuestion()">Next Question ➜</button>
+                </div>
+            </div>
+        </main>
+
+        <!-- Result Area -->
+        <footer id="result-area" class="hidden">
+            <div class="result-content">
+                <h2>Game Over 🎉</h2>
+
+                <!-- Pie Chart Container -->
+                <div id="chart-container">
+                    <div id="score-pie-chart">
+                        <span id="score-text-center">0%</span>
+                    </div>
+                </div>
+
+                <div class="score-display">
+                    <span id="final-score">0</span> / 5
+                </div>
+                <p id="feedback-text">Good Job!</p>
+
+                <!-- Review List Container -->
+                <div id="review-container">
+                    <h3>Review & Mnemonics</h3>
+                    <div id="review-list">
+                        <!-- Review items injected here -->
+                    </div>
+                </div>
+
+                <button id="restart-btn">Play Again</button>
+                <button class="secondary-btn" onclick="resetGame()">Back to Menu</button>
+            </div>
+        </footer>
+    </div>
+    <footer id="app-footer">
+        © 2026 irulu
+    </footer>
+    <script src="script.js"></script>
+</body>
+
+</html>
